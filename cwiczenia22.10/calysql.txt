@@ -14,7 +14,6 @@ ALTER TABLE zadanie MODIFY priorytet ENUM('normalny','wysoki','niski') NOT NULL 
 
 INSERT INTO zadanie(id_zadania, nazwa_zadania, priorytet, opis, pracownik) VALUES (1, ‘tworzenie struktury html’, ‘normalny’, ’Stworzenie szkieletu strony internetowej w HTMLu’ ,3),(2,’optymalizacja’,’wysoki’,’Zoptymalizowanie gry’,1),(3,’Tworzenie CSS’,’wysoki’,’Stworzyć CSS dla Strony internetowej.’,3);
 
-zad3
 
 CREATE TABLE projekt(
 id_projektu INT PRIMARY KEY AUTO_INCREMENT,
@@ -23,7 +22,7 @@ data_rozpoczecia DATE NOT NULL,
 data_zakonczenia DATE);
 
 ALTER TABLE projekt
-ADD menadzer_projektu INT NOT NULL,
+ADD menadzer_projektu INT NOT NULL;
 
 ALTER TABLE projekt
 ADD CONSTRAINT fk_projekt_menadzer
@@ -44,7 +43,6 @@ ON DELETE CASCADE;
 UPDATE zadanie SET projekt = 1 WHERE id_zadania = 1 AND id_zadania = 3;
 UPDATE zadanie SET projekt = 2 WHERE id_zadania = 2;
 
-zad4
 
 CREATE TABLE sprint(
 id_sprintu INT PRIMARY KEY AUTO_INCREMENT,
