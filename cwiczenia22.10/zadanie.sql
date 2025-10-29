@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS zadanie (
-  id_zadania INT AUTO_INCREMENT PRIMARY KEY, 
+id_zadania INT AUTO_INCREMENT PRIMARY KEY, 
 nazwa_zadania VARCHAR(150) NOT NULL, 
 priorytet ENUM('normalny', 'wysoki', 'niski') NOT NULL, 
 opis TEXT, 
@@ -12,7 +12,8 @@ ON UPDATE CASCADE);
 
 ALTER TABLE zadanie MODIFY priorytet ENUM('normalny','wysoki','niski') NOT NULL DEFAULT 'normalny';
 
-INSERT INTO zadanie(id_zadania, nazwa_zadania, priorytet, opis, pracownik) VALUES (1, ‘tworzenie struktury html’, ‘normalny’, ’Stworzenie szkieletu strony internetowej w HTMLu’ ,3),(2,’optymalizacja’,’wysoki’,’Zoptymalizowanie gry’,1),(3,’Tworzenie CSS’,’wysoki’,’Stworzyć CSS dla Strony internetowej.’,3);
+INSERT INTO zadanie(id_zadania, nazwa_zadania, priorytet, opis, pracownik) VALUES (1, 'tworzenie struktury html','normalny', 'Stworzenie szkieletu strony internetowej w HTMLu', 3),(2,'optymalizacja','wysoki','Zoptymalizowanie gry',1),(3,'Tworzenie CSS','wysoki','Stworzy CSS dla Strony internetowej.',3);
+
 
 
 CREATE TABLE IF NOT EXISTS projekt(
@@ -29,8 +30,8 @@ ADD CONSTRAINT fk_projekt_menadzer
 FOREIGN KEY (menadzer_projektu) REFERENCES pracownik(id_pracownika);
 
 INSERT INTO projekt(nazwa_projektu, data_rozpoczecia, data_zakonczenia, menadzer_projektu) VALUES
-(‘Gra Wideo’, ’2025-06-15’, ’2026-12-31’, 2),
-(‘Strona Internetowa’, ’2025-08-31’, ’2025-10-24’, 2);
+('Gra Wideo', '2025-06-15', '2026-12-31', 2),
+('Strona Internetowa', '2025-08-31', '2025-10-24', 2);
 
 ALTER TABLE zadanie
 ADD COLUMN projekt INT;
@@ -58,7 +59,7 @@ ADD CONSTRAINT fk_zadanie_sprint
 FOREIGN KEY (sprint) REFERENCES sprint(id_sprintu)
 ON DELETE SET NULL;
 
-INSERT INTO sprint(numer_sprintu, data_rozpoczecia, data_zakonczenia) VALUES (1337, ‘2025-10-15’, ‘2025-10-25’);
+INSERT INTO sprint(numer_sprintu, data_rozpoczecia, data_zakonczenia) VALUES (1337, '2025-10-15', '2025-10-25');
 
 UPDATE zadanie
 SET sprint = 1
@@ -69,9 +70,9 @@ id_statusu INT PRIMARY KEY AUTO_INCREMENT,
 nazwa_statusu VARCHAR(20) NOT NULL);
 
 INSERT INTO status(nazwa_statusu) VALUES
-(‘w trakcie’),
-(‘zakończony’),
-(‘nierozpoczęty’);
+('w trakcie'),
+('zakończony'),
+('nierozpoczęty');
 
 CREATE TABLE IF NOT EXISTS zadanie_has_status(
 id_zdarzenia INT PRIMARY KEY AUTO_INCREMENT,
@@ -94,6 +95,6 @@ INSERT INTO zadanie_has_status(id_zadania, id_statusu) VALUES (1,2),(2,3),(3,1);
 DELETE FROM projekt WHERE id_projektu = 2;
 SELECT * FROM zadanie;
 
-UPDATE zadanie SET sprint = NULL; ALTER TABLE zadanie DROP FOREIGN KEY fk_zadanie_sprint; DROP TABLE sprint;
+UPDATE zadanie SET sprint = NULL; ALTER TABLE zadanie DROP FOREIGN KEY fk_zadanie_sprint;
 
-
+DROP TABLE sprint;
