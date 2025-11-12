@@ -45,5 +45,5 @@ SELECT nazwa, (waga*ilosc-(waga*ilosc)*0.3) AS masa_netto, ((waga*ilosc)*0.3) AS
 -- 2
 SELECT * FROM zasob WHERE rodzaj IS NULL;
 -- 3
-SELECT DISTINCT nazwa FROM zasob WHERE nazwa LIKE 'Ba%' OR nazwa like '%os';
+SELECT DISTINCT nazwa FROM zasob WHERE nazwa LIKE 'Ba%' OR nazwa like '%os' ORDER BY nazwa asc;
 
